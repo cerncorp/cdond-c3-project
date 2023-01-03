@@ -31,7 +31,7 @@ Parameters:
       The ID of the AMI (e.g. ami-04ff9e9b51c1f62ca for Ubuntu 20 deployed in ap-southeast-1 )
       ami-04ff9e9b51c1f62ca for Ubuntu 18 in ap-southeast-1
     Type: String
-    Default: ami-04ff9e9b51c1f62ca # ami-0ee8244746ec5d6d4
+    Default: ami-06df38320cecdd700 # ami-0ee8244746ec5d6d4
   LocalIPAddress:
     Description: This is your local IP address, it will be used to configure security group ingress
     Type: String
