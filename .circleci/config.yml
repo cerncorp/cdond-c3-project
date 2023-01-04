@@ -174,8 +174,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints:
-            - '75:80:90:53:bb:ba:d3:e6:1f:b8:0f:58:3f:c7:17:d3:31:a4:8c:ee'
+          fingerprints: ["75:80:90:53:bb:ba:d3:e6:1f:b8:0f:58:3f:c7:17:d3:31:a4:8c:ee"]
       - run:
           name: Install dependencies
           command: |
@@ -275,8 +274,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints:
-            - '75:80:90:53:bb:ba:d3:e6:1f:b8:0f:58:3f:c7:17:d3:31:a4:8c:ee'
+          fingerprints: ["75:80:90:53:bb:ba:d3:e6:1f:b8:0f:58:3f:c7:17:d3:31:a4:8c:ee"]
       - run:
           name: Install dependencies
           command: |
@@ -387,8 +385,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints:
-            - '75:80:90:53:bb:ba:d3:e6:1f:b8:0f:58:3f:c7:17:d3:31:a4:8c:ee'
+          fingerprints: ["75:80:90:53:bb:ba:d3:e6:1f:b8:0f:58:3f:c7:17:d3:31:a4:8c:ee"]
       - run:
           name: Install dependencies
           command: |
@@ -430,16 +427,16 @@ workflows:
       - configure-infrastructure:
           requires: [add-prometheus-node-exporter]
       #     requires: [deploy-infrastructure]
-      # - run-migrations:
-      #     requires: [configure-infrastructure]
-      # - deploy-frontend:
-      #     requires: [run-migrations]
-      # - deploy-backend:
-      #     requires: [run-migrations]
-      # - smoke-test:
-      #     requires: [deploy-backend, deploy-frontend]
-      # - cloudfront-update:
-      #     requires: [smoke-test]
-      # - cleanup:
-      #     # requires: [cloudfront-update, add-prometheus-node-exporter]
-      #     requires: [cloudfront-update, deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
+      - deploy-frontend:
+          requires: [run-migrations]
+      - deploy-backend:
+          requires: [run-migrations]
+      - smoke-test:
+          requires: [deploy-backend, deploy-frontend]
+      - cloudfront-update:
+          requires: [smoke-test]
+      - cleanup:
+          requires: [cloudfront-update, add-prometheus-node-exporter]
+          # requires: [cloudfront-update, deploy-infrastructure]
